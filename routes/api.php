@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Products API routes :: 
+Route::apiResource('/products', 'ProductController');
+//products/{product}/review
+Route::group(['prefix'=>'v1'], function(){
+Route::group(['prefix'=>'products'], function(){
+	Route::apiResource('/{product}/reviews', 'ReviewController');
+});
+});
